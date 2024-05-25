@@ -8,7 +8,7 @@ class Classifier {
         trainingInstances = trainingData;
     }
 
-    float test(vector<float> testInstance) {
+    float test(int testID) {
         // Calculate Euclidean distance to all trainingInstances to determine class
     }
 }

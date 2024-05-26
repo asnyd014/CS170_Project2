@@ -2,7 +2,7 @@
 
 int main() {
     vector<vector<float>> trainingData;
-    vector<int> featureSubset({3, 5, 7});
+    vector<float> featureSubset({3, 5, 7});
     // Read data from file into trainingData
 
     Classifer NN;

@@ -1,5 +1,8 @@
 #include <vector>
 #include <cmath>
+#include <climits>
+
+using namespace std;
 
 class Classifier {
     vector<vector<float>> trainingInstances;
@@ -33,4 +36,4 @@ class Classifier {
         // Return class of instance at minIndex
         return trainingInstances[minIndex][0];
     }
-}
+};

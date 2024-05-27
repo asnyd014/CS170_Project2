@@ -14,6 +14,7 @@ class Validator {
         vector<vector<float>> filteredDataset;      // initialize vector to store dataset w/ filtered features
         for (const auto& instance : dataset) {      // iterate each instance in dataset
             vector<float> extractedFeatures;        // initialize vector to store extracted features for each instance
+            extractedFeatures.push_back(instance[0]);
             for (size_t i = 0; i < instance.size(); ++i) {      // iterate each feature in instance
                 if (find(featureSubset.begin(), featureSubset.end(), i) != featureSubset.end()) {   // check if feature index is in the specified feature subset
                     extractedFeatures.push_back(instance[i]);   // add the feature to extracted features
@@ -21,7 +22,7 @@ class Validator {
             }
             filteredDataset.push_back(extractedFeatures);   // add the extracted features to filtered dataset
         }
-        
+       
         // train the classifier with filtered dataset
         NN.train(filteredDataset);
 

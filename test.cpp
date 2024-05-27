@@ -37,9 +37,21 @@ int main() {
     trainingData = readDataset("large-test-dataset-1.txt"); 
     cout.precision(4);
 
+    cout << "Using features {";
+    for (int i = 0; i < featureSubset.size(); ++i) {
+        if (i != featureSubset.size()-1) { // Check if feature is last in vector
+            cout << featureSubset[i] << ", ";
+        }
+        else {
+            cout << featureSubset[i] << "}" << endl;
+        }
+    }
+
     Classifier NN;
     Validator v(NN);
     float acc = v.leaveOneOutValidation(featureSubset, trainingData);
+
+    cout << "\nAccuracy = " << acc << endl;
 
     return 0;
 }

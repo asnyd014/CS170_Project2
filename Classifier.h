@@ -13,7 +13,7 @@ class Classifier {
         trainingInstances = trainingData;
     }
 
-    float test(int testID) {
+    int test(int testID) {
         float minDistance = INT_MAX;
         int minIndex = 0;
         float tempDistance = 0;
@@ -34,7 +34,7 @@ class Classifier {
             }
         }
 
-        // Return class of instance at minIndex
-        return trainingInstances[minIndex][0];
+        // Return ID of instance at minIndex
+        return minIndex;
     }
 };

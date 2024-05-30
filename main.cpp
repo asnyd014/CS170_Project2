@@ -3,50 +3,54 @@ https://stackoverflow.com/questions/2704521/generate-random-double-numbers-in-c
 
 */
 #include <iostream>
-#include <random>
-#include <ctime>
 #include <algorithm>
+#include <string>
+#include <fstream>
+#include <sstream>
+#include "Validator.h"
 
 using namespace std;
 
 struct FeatureNode {
     vector<int> features;
-    double accuracy;
+    float accuracy;
 };
 
-void forwardSelection(int totalFeatures);
-void backwardElimination(int totalFeatures);
-double evaluation();
+void forwardSelection(int totalFeatures, const vector<vector<float>> &dataset, Validator &v);
+void backwardElimination(int totalFeatures, const vector<vector<float>> &dataset, Validator &v);
 void outputFeatures(vector<int> features);
-
-// Assuming accuracy will not be perfect, should be unnecessary in next part of project
-uniform_real_distribution<double> uniform_rand(0.01, 99.99);
-default_random_engine rand_engine;
+vector<vector<float>> readDataset(string filename);
 
 int main() {
     int totalFeatures = 0;
     int algoNum = 0;
+    string filename;
+    vector<vector<float>> dataset;
 
-    rand_engine.seed(time(NULL)); // Seed random engine with time
-    cout.precision(4); // Have cout ostream only display 4 digits of precision
-
+    cout.precision(4);
     cout << "Welcome to Group 42's Feature Selection Algorithm" << endl;
 
-    // Read in total number of features
-    cout << "\nPlease enter total number of features: ";
-    cin >> totalFeatures;
+    // Request name of dataset file
+    cout << "\nType in the name of the file to test: ";
+    cin >> filename;
 
     // Read in algorithm selection
     cout << "\nType the number of the algorithm you want to run:" << endl;
     cout << "1. Forward Selection" << "\n2. Backward Elimination" << endl;
     cin >> algoNum;
 
+    dataset = readDataset(filename);
+    totalFeatures = dataset[0].size() - 1;
+
+    Classifier NN;
+    Validator v(NN);
+
     switch(algoNum) {
         case 1:
-            forwardSelection(totalFeatures);
+            forwardSelection(totalFeatures, dataset, v);
             break;
         case 2:
-            backwardElimination(totalFeatures);
+            backwardElimination(totalFeatures, dataset, v);
             break;
         default:
             cout << "Invalid input" << endl;
@@ -55,7 +59,7 @@ int main() {
     return 0;
 }
 
-void forwardSelection(int totalFeatures) {
+void forwardSelection(int totalFeatures, const vector<vector<float>> &dataset, Validator &v) {
     bool maxUpdated; // Used for determining if there has been a decrease in accuracy
     // Create list of feature values to be used for creation of node later
     vector<int> featureValueList;
@@ -65,10 +69,10 @@ void forwardSelection(int totalFeatures) {
 
     // Create initial empty feature node
     FeatureNode initialNode;
-    initialNode.accuracy = evaluation();
+    initialNode.accuracy = v.leaveOneOutValidation(initialNode.features, dataset);    
 
     // Output initial evaluation
-    cout << "\nUsing no features and random evaluation, the current accuracy is " << initialNode.accuracy << "%" << endl;
+    cout << "\nUsing no features, the current accuracy is  " << initialNode.accuracy << "%" << endl;
     cout << "\nBeginning Forward Selection search\n" << endl;
 
     // Nodes representing the tentative next choice and current maximum 
@@ -89,7 +93,7 @@ void forwardSelection(int totalFeatures) {
                     vector<int> newFeatures = nextNode.features;
                     newFeatures.push_back(featureValueList[j]);
                     newNode.features = newFeatures;
-                    newNode.accuracy = evaluation();
+                    newNode.accuracy = v.leaveOneOutValidation(newNode.features, dataset);
                     nodeOptions.push_back(newNode);
 
                     // Output feature information
@@ -103,7 +107,7 @@ void forwardSelection(int totalFeatures) {
                 vector<int> newFeatures;
                 newFeatures.push_back(featureValueList[j]);
                 newNode.features = newFeatures;
-                newNode.accuracy = evaluation();
+                newNode.accuracy = v.leaveOneOutValidation(newNode.features, dataset);
                 nodeOptions.push_back(newNode);
 
                 // Output feature information
@@ -143,7 +147,7 @@ void forwardSelection(int totalFeatures) {
     cout << "which has an accuracy of " << maxNode.accuracy << "%" << endl;
 }
 
-void backwardElimination(int totalFeatures) {
+void backwardElimination(int totalFeatures, const vector<vector<float>> &dataset, Validator &v) {
     bool maxUpdated; // Used for determining if there has been a decrease in accuracy
     // Create list of feature values to be used for creation of node later
     vector<int> featureValueList;
@@ -154,12 +158,12 @@ void backwardElimination(int totalFeatures) {
     }
 
     // Create initial empty feature node
-    initialNode.accuracy = evaluation();
+    initialNode.accuracy = v.leaveOneOutValidation(initialNode.features, dataset);
 
     // Output initial evaluation
     cout << "\nUsing features ";
     outputFeatures(initialNode.features);
-    cout << "and random evaluation, the current accuracy is " << initialNode.accuracy << "%" << endl;
+    cout << " the current accuracy is " << initialNode.accuracy << "%" << endl;
     cout << "\nBeginning Backward Elimination search\n" << endl;
 
     // Nodes representing the tentative next choice and current maximum 
@@ -180,7 +184,7 @@ void backwardElimination(int totalFeatures) {
                     vector<int> newFeatures = nextNode.features;
                     newFeatures.erase(find(newFeatures.begin(), newFeatures.end(), featureValueList[j])); // Remove element from features
                     newNode.features = newFeatures;
-                    newNode.accuracy = evaluation();
+                    newNode.accuracy = v.leaveOneOutValidation(newNode.features, dataset);
                     nodeOptions.push_back(newNode);
 
                     // Output feature information
@@ -191,7 +195,7 @@ void backwardElimination(int totalFeatures) {
             }
             else { // Last selection, features vector is empty
                 FeatureNode newNode;
-                newNode.accuracy = evaluation();
+                newNode.accuracy = v.leaveOneOutValidation(newNode.features, dataset);
                 nodeOptions.push_back(newNode);
 
                 // Output feature information
@@ -230,10 +234,6 @@ void backwardElimination(int totalFeatures) {
     cout << "which has an accuracy of " << maxNode.accuracy << "%" << endl;
 }
 
-double evaluation() {
-    return uniform_rand(rand_engine);
-}
-
 void outputFeatures(vector<int> features) {
     int size = features.size();
     cout << "{";
@@ -246,4 +246,30 @@ void outputFeatures(vector<int> features) {
         }
     }
     else { cout << "} "; }
+}
+
+vector<vector<float>> readDataset(string filename) {
+    vector<vector<float>> dataset;
+    ifstream file(filename);
+
+    if (!file.is_open()) {
+        cerr << "Error opening file." << endl;
+        exit(0);
+    }
+
+    string line;
+    while (getline(file, line)) {
+        istringstream lineStream(line);
+        vector<float> instance;
+        float value;
+
+        while (lineStream >> value) {
+            instance.push_back(value);
+        }
+
+        dataset.push_back(instance);
+    }
+
+    file.close();
+    return dataset;
 }

@@ -271,6 +271,9 @@ vector<vector<float>> readDataset(string filename) {
     }
 
     file.close();
+
+    cout << "\nThis dataset has " << dataset[0].size()-1 << " features, with " << dataset.size() << " instances." << endl;
+
     return dataset;
 }
 

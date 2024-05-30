@@ -4,11 +4,6 @@
 
 #include "Classifier.h"
 #include <algorithm>
-#include <chrono>
-
-using std::chrono::high_resolution_clock;
-using std::chrono::duration;
-using std::chrono::milliseconds;
 
 class Validator {
     Classifier NN;
@@ -20,11 +15,7 @@ class Validator {
 
     // perform leave-one-out validation using specified feature subset and dataset
     float leaveOneOutValidation(vector<int> featureSubset, vector<vector<float>> dataset) {
-        auto t1 = high_resolution_clock::now();
-        auto t2 = high_resolution_clock::now();
-        duration<double, milli> exec_time;
-        t1 = high_resolution_clock::now();
-        cout << "Filtering dataset for selected features..." << endl;
+        //cout << "Filtering dataset for selected features..." << endl;
         vector<vector<float>> filteredDataset;      // initialize vector to store dataset w/ filtered features
         
         if (!featureSubset.empty()) {
@@ -46,10 +37,6 @@ class Validator {
                 filteredDataset.push_back(extractedFeatures);
             }
         }
-
-        t2 = high_resolution_clock::now();
-        exec_time = t2 - t1;
-        cout << "Filtering completed after " << exec_time.count() << "ms\n" << endl;
        
         // train the classifier with filtered dataset
         NN.train(filteredDataset);
@@ -57,7 +44,6 @@ class Validator {
         // leave-one-out validation
         int correctPredictions = 0;     // initialize counter for correct predictions
         for (int i = 0; i < dataset.size(); ++i) {           // iterate each instance in dataset
-            t1 = high_resolution_clock::now();
             vector<float> testInstance = filteredDataset[i];    // get the test instance from filtered dataset
             int nearestNeighbor = NN.test(i);          // get the predicted class using trained classifier
 
@@ -65,11 +51,8 @@ class Validator {
                 correctPredictions++;                   // increment counter for correct predictions
             }
 
-            t2 = high_resolution_clock::now();
-            exec_time = t2 - t1;
-            cout << "Instance " << i << " is class " << filteredDataset[i][0] << endl;
-            cout << "Its nearest neighbor is " << nearestNeighbor << " which is in class " << filteredDataset[nearestNeighbor][0] << endl;
-            cout << "Classification completed after " << exec_time.count() << "ms" << endl;
+            //cout << "Instance " << i << " is class " << filteredDataset[i][0] << endl;
+            //cout << "Its nearest neighbor is " << nearestNeighbor << " which is in class " << filteredDataset[nearestNeighbor][0] << endl;
         }
 
         // calculate accuracy by dividing number of correct predictions by total number of instances

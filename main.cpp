@@ -2,8 +2,6 @@
 https://stackoverflow.com/questions/2704521/generate-random-double-numbers-in-c
 
 */
-#include <iostream>
-#include <algorithm>
 #include <string>
 #include <fstream>
 #include <sstream>

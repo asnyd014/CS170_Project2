@@ -70,7 +70,7 @@ void forwardSelection(int totalFeatures, const vector<vector<float>> &dataset, V
     initialNode.accuracy = v.leaveOneOutValidation(initialNode.features, dataset);    
 
     // Output initial evaluation
-    cout << "\nUsing no features, the current accuracy is  " << initialNode.accuracy << "%" << endl;
+    cout << "\nUsing no features, the current accuracy is  " << initialNode.accuracy * 100 << "%" << endl;
     cout << "\nBeginning Forward Selection search\n" << endl;
 
     // Nodes representing the tentative next choice and current maximum 
@@ -97,7 +97,7 @@ void forwardSelection(int totalFeatures, const vector<vector<float>> &dataset, V
                     // Output feature information
                     cout << "\tUsing feature(s) ";
                     outputFeatures(newNode.features);
-                    cout << "accuracy is " << newNode.accuracy << "%" << endl;
+                    cout << "accuracy is " << newNode.accuracy * 100 << "%" << endl;
                 }
             }
             else { // First selection
@@ -111,7 +111,7 @@ void forwardSelection(int totalFeatures, const vector<vector<float>> &dataset, V
                 // Output feature information
                 cout << "\tUsing feature(s) ";
                 outputFeatures(newNode.features);
-                cout << "accuracy is " << newNode.accuracy << "%" << endl; 
+                cout << "accuracy is " << newNode.accuracy * 100 << "%" << endl; 
             }
         }
 
@@ -126,7 +126,7 @@ void forwardSelection(int totalFeatures, const vector<vector<float>> &dataset, V
             // Output choice of next node
             cout << "\nFeature set ";
             outputFeatures(nextNode.features);
-            cout << "was best, accuracy is " << nextNode.accuracy << "%" << endl;
+            cout << "was best, accuracy is " << nextNode.accuracy * 100 << "%" << endl;
             if (!maxUpdated) {
                 cout << "Warning: Accuracy has decreased from previously recorded maximum\n" << endl;
             }
@@ -142,7 +142,7 @@ void forwardSelection(int totalFeatures, const vector<vector<float>> &dataset, V
     // Output final best choice based on maxNode
     cout << "\nFinished search. The best feature subset is ";
     outputFeatures(maxNode.features);
-    cout << "which has an accuracy of " << maxNode.accuracy << "%" << endl;
+    cout << "which has an accuracy of " << maxNode.accuracy * 100 << "%" << endl;
 }
 
 void backwardElimination(int totalFeatures, const vector<vector<float>> &dataset, Validator &v) {
@@ -161,7 +161,7 @@ void backwardElimination(int totalFeatures, const vector<vector<float>> &dataset
     // Output initial evaluation
     cout << "\nUsing features ";
     outputFeatures(initialNode.features);
-    cout << " the current accuracy is " << initialNode.accuracy << "%" << endl;
+    cout << " the current accuracy is " << initialNode.accuracy * 100 << "%" << endl;
     cout << "\nBeginning Backward Elimination search\n" << endl;
 
     // Nodes representing the tentative next choice and current maximum 
@@ -188,7 +188,7 @@ void backwardElimination(int totalFeatures, const vector<vector<float>> &dataset
                     // Output feature information
                     cout << "\tUsing feature(s) ";
                     outputFeatures(newNode.features);
-                    cout << "accuracy is " << newNode.accuracy << "%" << endl;
+                    cout << "accuracy is " << newNode.accuracy * 100 << "%" << endl;
                 }
             }
             else { // Last selection, features vector is empty
@@ -197,7 +197,7 @@ void backwardElimination(int totalFeatures, const vector<vector<float>> &dataset
                 nodeOptions.push_back(newNode);
 
                 // Output feature information
-                cout << "\tUsing no features, accuracy is " << newNode.accuracy << "%" << endl; 
+                cout << "\tUsing no features, accuracy is " << newNode.accuracy * 100 << "%" << endl; 
                 break;
             }
         }
@@ -213,7 +213,7 @@ void backwardElimination(int totalFeatures, const vector<vector<float>> &dataset
             // Output choice of next node
             cout << "\nFeature set ";
             outputFeatures(nextNode.features);
-            cout << "was best, accuracy is " << nextNode.accuracy << "%" << endl;
+            cout << "was best, accuracy is " << nextNode.accuracy * 100 << "%" << endl;
             if (!maxUpdated) {
                 cout << "Warning: Accuracy has decreased from previously recorded maximum\n" << endl;
             }
@@ -229,7 +229,7 @@ void backwardElimination(int totalFeatures, const vector<vector<float>> &dataset
     // Output final best choice based on maxNode
     cout << "\nFinished search. The best feature subset is ";
     outputFeatures(maxNode.features);
-    cout << "which has an accuracy of " << maxNode.accuracy << "%" << endl;
+    cout << "which has an accuracy of " << maxNode.accuracy * 100 << "%" << endl;
 }
 
 void outputFeatures(vector<int> features) {

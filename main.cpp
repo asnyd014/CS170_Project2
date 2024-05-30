@@ -18,6 +18,7 @@ void forwardSelection(int totalFeatures, const vector<vector<float>> &dataset, V
 void backwardElimination(int totalFeatures, const vector<vector<float>> &dataset, Validator &v);
 void outputFeatures(vector<int> features);
 vector<vector<float>> readDataset(string filename);
+void normalize(vector<vector<float>> &dataset);
 
 int main() {
     int totalFeatures = 0;
@@ -38,6 +39,7 @@ int main() {
     cin >> algoNum;
 
     dataset = readDataset(filename);
+    normalize(dataset);
     totalFeatures = dataset[0].size() - 1;
 
     Classifier NN;
@@ -70,7 +72,7 @@ void forwardSelection(int totalFeatures, const vector<vector<float>> &dataset, V
     initialNode.accuracy = v.leaveOneOutValidation(initialNode.features, dataset);    
 
     // Output initial evaluation
-    cout << "\nUsing no features, the current accuracy is  " << initialNode.accuracy * 100 << "%" << endl;
+    cout << "\nUsing no features, the current accuracy is " << initialNode.accuracy * 100 << "%" << endl;
     cout << "\nBeginning Forward Selection search\n" << endl;
 
     // Nodes representing the tentative next choice and current maximum 
@@ -270,4 +272,43 @@ vector<vector<float>> readDataset(string filename) {
 
     file.close();
     return dataset;
+}
+
+void normalize(vector<vector<float>> &dataset) {
+    cout << "\nNormalizing data..." << endl;
+    int numFeatures = dataset[0].size(); // Includes class index
+    // Initialize vector with a number of elements equal to the number of features initialized to 0
+    vector<float> meanCalc(numFeatures-1, 0);
+    vector<float> stdDevCalc(numFeatures-1, 0);
+
+    // Sum values of each feature
+    for (int i = 0; i < dataset.size(); ++i) {
+        for (int j = 1; j < numFeatures; ++j) {
+            meanCalc[j-1] += dataset[i][j];
+        }
+    }
+
+    // Divide all sums by number of features to calculate mean
+    for (float m : meanCalc) {
+        m /= numFeatures-1;
+    }
+
+    // Calculate standard deviation for each feature
+    for (int i = 0; i < dataset.size(); ++i) {
+        for (int j = 1; j < numFeatures; ++j) {
+            stdDevCalc[j-1] += pow(dataset[i][j] - meanCalc[j-1], 2);
+        }
+    }
+
+    // Divide all sums by number of features to calculate standard deviation
+    for (float s : stdDevCalc) {
+        s /= numFeatures-1;
+    }
+
+    // Z-normalize data using calculated means and standard deviations
+    for (int i = 0; i < dataset.size(); ++i) {
+        for (int j = 1; j < numFeatures; ++j) {
+            dataset[i][j] = (dataset[i][j] - meanCalc[j-1]) / stdDevCalc[j-1];
+        }
+    }
 }

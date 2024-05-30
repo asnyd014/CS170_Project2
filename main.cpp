@@ -121,7 +121,13 @@ void forwardSelection(int totalFeatures, const vector<vector<float>> &dataset, V
         nextNode = nodeOptions[0];
         for (int j = 0; j < nodeOptions.size(); ++j) {
             if (nodeOptions[j].accuracy > nextNode.accuracy) { nextNode = nodeOptions[j]; } // Choose new next node
+            else if (nodeOptions[j].accuracy == nextNode.accuracy) { // If accuracies are equal, choose the new option only if it is simpler (has less features)
+                if (nodeOptions[j].features.size() < nextNode.features.size()) { nextNode = nodeOptions[j]; }
+            }
             if (nodeOptions[j].accuracy > maxNode.accuracy) { maxNode = nodeOptions[j]; maxUpdated = true; } // Update max node
+            else if (nodeOptions[j].accuracy == maxNode.accuracy) { // If accuracies are equal, choose the new option only if it is simpler (has less features)
+                if (nodeOptions[j].features.size() < maxNode.features.size()) { maxNode = nodeOptions[j]; maxUpdated; } 
+            }
         }
 
         if (i != featureValueList.size()-1) { // Do not output nextNode info if this is the last selection
@@ -208,7 +214,13 @@ void backwardElimination(int totalFeatures, const vector<vector<float>> &dataset
         nextNode = nodeOptions[0];
         for (int j = 0; j < nodeOptions.size(); ++j) {
             if (nodeOptions[j].accuracy > nextNode.accuracy) { nextNode = nodeOptions[j]; } // Choose new next node
+            else if (nodeOptions[j].accuracy == nextNode.accuracy) { // If accuracies are equal, choose the new option only if it is simpler (has less features)
+                if (nodeOptions[j].features.size() < nextNode.features.size()) { nextNode = nodeOptions[j]; }
+            }
             if (nodeOptions[j].accuracy > maxNode.accuracy) { maxNode = nodeOptions[j]; maxUpdated = true; } // Update max node
+            else if (nodeOptions[j].accuracy == maxNode.accuracy) { // If accuracies are equal, choose the new option only if it is simpler (has less features)
+                if (nodeOptions[j].features.size() < maxNode.features.size()) { maxNode = nodeOptions[j]; maxUpdated; }
+            }
         }
 
         if (i != featureValueList.size()-1) { // Do not output nextNode info if this is the last selection

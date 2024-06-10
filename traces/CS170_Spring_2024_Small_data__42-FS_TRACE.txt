@@ -1,0 +1,108 @@
+Welcome to Group 42's Feature Selection Algorithm
+
+Type in the name of the file to test: CS170_Spring_2024_Small_data__42.txt 
+Type the number of the algorithm you want to run: 1
+1. Forward Selection
+2. Backward Elimination
+
+This dataset has 10 features, with 100 instances.
+
+Normalizing data...
+
+Using no features, the current accuracy is 85%
+
+Beginning Forward Selection search
+
+	Using feature(s) {1} accuracy is 79%
+	Using feature(s) {2} accuracy is 76%
+	Using feature(s) {3} accuracy is 78%
+	Using feature(s) {4} accuracy is 72%
+	Using feature(s) {5} accuracy is 75%
+	Using feature(s) {6} accuracy is 76%
+	Using feature(s) {7} accuracy is 77%
+	Using feature(s) {8} accuracy is 89%
+	Using feature(s) {9} accuracy is 82%
+	Using feature(s) {10} accuracy is 76%
+
+Feature set {8} was best, accuracy is 89%
+
+	Using feature(s) {8,1} accuracy is 85%
+	Using feature(s) {8,2} accuracy is 76%
+	Using feature(s) {8,3} accuracy is 87%
+	Using feature(s) {8,4} accuracy is 73%
+	Using feature(s) {8,5} accuracy is 86%
+	Using feature(s) {8,6} accuracy is 78%
+	Using feature(s) {8,7} accuracy is 79%
+	Using feature(s) {8,9} accuracy is 90%
+	Using feature(s) {8,10} accuracy is 80%
+
+Feature set {8,9} was best, accuracy is 90%
+
+	Using feature(s) {8,9,1} accuracy is 89%
+	Using feature(s) {8,9,2} accuracy is 74%
+	Using feature(s) {8,9,3} accuracy is 92%
+	Using feature(s) {8,9,4} accuracy is 71%
+	Using feature(s) {8,9,5} accuracy is 88%
+	Using feature(s) {8,9,6} accuracy is 83%
+	Using feature(s) {8,9,7} accuracy is 76%
+	Using feature(s) {8,9,10} accuracy is 88%
+
+Feature set {8,9,3} was best, accuracy is 92%
+
+	Using feature(s) {8,9,3,1} accuracy is 90%
+	Using feature(s) {8,9,3,2} accuracy is 74%
+	Using feature(s) {8,9,3,4} accuracy is 71%
+	Using feature(s) {8,9,3,5} accuracy is 88%
+	Using feature(s) {8,9,3,6} accuracy is 86%
+	Using feature(s) {8,9,3,7} accuracy is 76%
+	Using feature(s) {8,9,3,10} accuracy is 85%
+
+Feature set {8,9,3,1} was best, accuracy is 90%
+Warning: Accuracy has decreased from previously recorded maximum
+
+	Using feature(s) {8,9,3,1,2} accuracy is 73%
+	Using feature(s) {8,9,3,1,4} accuracy is 71%
+	Using feature(s) {8,9,3,1,5} accuracy is 84%
+	Using feature(s) {8,9,3,1,6} accuracy is 86%
+	Using feature(s) {8,9,3,1,7} accuracy is 76%
+	Using feature(s) {8,9,3,1,10} accuracy is 85%
+
+Feature set {8,9,3,1,6} was best, accuracy is 86%
+Warning: Accuracy has decreased from previously recorded maximum
+
+	Using feature(s) {8,9,3,1,6,2} accuracy is 73%
+	Using feature(s) {8,9,3,1,6,4} accuracy is 71%
+	Using feature(s) {8,9,3,1,6,5} accuracy is 83%
+	Using feature(s) {8,9,3,1,6,7} accuracy is 76%
+	Using feature(s) {8,9,3,1,6,10} accuracy is 79%
+
+Feature set {8,9,3,1,6,5} was best, accuracy is 83%
+Warning: Accuracy has decreased from previously recorded maximum
+
+	Using feature(s) {8,9,3,1,6,5,2} accuracy is 74%
+	Using feature(s) {8,9,3,1,6,5,4} accuracy is 68%
+	Using feature(s) {8,9,3,1,6,5,7} accuracy is 77%
+	Using feature(s) {8,9,3,1,6,5,10} accuracy is 88%
+
+Feature set {8,9,3,1,6,5,10} was best, accuracy is 88%
+Warning: Accuracy has decreased from previously recorded maximum
+
+	Using feature(s) {8,9,3,1,6,5,10,2} accuracy is 74%
+	Using feature(s) {8,9,3,1,6,5,10,4} accuracy is 69%
+	Using feature(s) {8,9,3,1,6,5,10,7} accuracy is 77%
+
+Feature set {8,9,3,1,6,5,10,7} was best, accuracy is 77%
+Warning: Accuracy has decreased from previously recorded maximum
+
+	Using feature(s) {8,9,3,1,6,5,10,7,2} accuracy is 78%
+	Using feature(s) {8,9,3,1,6,5,10,7,4} accuracy is 74%
+
+Feature set {8,9,3,1,6,5,10,7,2} was best, accuracy is 78%
+Warning: Accuracy has decreased from previously recorded maximum
+
+	Using feature(s) {8,9,3,1,6,5,10,7,2,4} accuracy is 74%
+
+Warning: Accuracy has decreased from previously recorded maximum
+
+
+Finished search. The best feature subset is {8,9,3} which has an accuracy of 92%

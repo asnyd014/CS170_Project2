@@ -1,0 +1,107 @@
+Welcome to Group 42's Feature Selection Algorithm
+
+Type in the name of the file to test: CS170_Spring_2024_Small_data__42.txt 
+Type the number of the algorithm you want to run: 2
+1. Forward Selection
+2. Backward Elimination
+
+This dataset has 10 features, with 100 instances.
+
+Normalizing data...
+
+Using features {1,2,3,4,5,6,7,8,9,10}  the current accuracy is 74%
+
+Beginning Backward Elimination search
+
+	Using feature(s) {2,3,4,5,6,7,8,9,10} accuracy is 74%
+	Using feature(s) {1,3,4,5,6,7,8,9,10} accuracy is 74%
+	Using feature(s) {1,2,4,5,6,7,8,9,10} accuracy is 74%
+	Using feature(s) {1,2,3,5,6,7,8,9,10} accuracy is 78%
+	Using feature(s) {1,2,3,4,6,7,8,9,10} accuracy is 74%
+	Using feature(s) {1,2,3,4,5,7,8,9,10} accuracy is 74%
+	Using feature(s) {1,2,3,4,5,6,8,9,10} accuracy is 79%
+	Using feature(s) {1,2,3,4,5,6,7,9,10} accuracy is 74%
+	Using feature(s) {1,2,3,4,5,6,7,8,10} accuracy is 74%
+	Using feature(s) {1,2,3,4,5,6,7,8,9} accuracy is 74%
+
+Feature set {1,2,3,4,5,6,8,9,10} was best, accuracy is 79%
+
+	Using feature(s) {2,3,4,5,6,8,9,10} accuracy is 79%
+	Using feature(s) {1,3,4,5,6,8,9,10} accuracy is 69%
+	Using feature(s) {1,2,4,5,6,8,9,10} accuracy is 79%
+	Using feature(s) {1,2,3,5,6,8,9,10} accuracy is 74%
+	Using feature(s) {1,2,3,4,6,8,9,10} accuracy is 79%
+	Using feature(s) {1,2,3,4,5,8,9,10} accuracy is 79%
+	Using feature(s) {1,2,3,4,5,6,9,10} accuracy is 79%
+	Using feature(s) {1,2,3,4,5,6,8,10} accuracy is 79%
+	Using feature(s) {1,2,3,4,5,6,8,9} accuracy is 79%
+
+Feature set {2,3,4,5,6,8,9,10} was best, accuracy is 79%
+Warning: Accuracy has decreased from previously recorded maximum
+
+	Using feature(s) {3,4,5,6,8,9,10} accuracy is 70%
+	Using feature(s) {2,4,5,6,8,9,10} accuracy is 79%
+	Using feature(s) {2,3,5,6,8,9,10} accuracy is 76%
+	Using feature(s) {2,3,4,6,8,9,10} accuracy is 79%
+	Using feature(s) {2,3,4,5,8,9,10} accuracy is 79%
+	Using feature(s) {2,3,4,5,6,9,10} accuracy is 79%
+	Using feature(s) {2,3,4,5,6,8,10} accuracy is 79%
+	Using feature(s) {2,3,4,5,6,8,9} accuracy is 79%
+
+Feature set {2,4,5,6,8,9,10} was best, accuracy is 79%
+Warning: Accuracy has decreased from previously recorded maximum
+
+	Using feature(s) {4,5,6,8,9,10} accuracy is 70%
+	Using feature(s) {2,5,6,8,9,10} accuracy is 76%
+	Using feature(s) {2,4,6,8,9,10} accuracy is 79%
+	Using feature(s) {2,4,5,8,9,10} accuracy is 79%
+	Using feature(s) {2,4,5,6,9,10} accuracy is 79%
+	Using feature(s) {2,4,5,6,8,10} accuracy is 79%
+	Using feature(s) {2,4,5,6,8,9} accuracy is 79%
+
+Feature set {2,4,6,8,9,10} was best, accuracy is 79%
+Warning: Accuracy has decreased from previously recorded maximum
+
+	Using feature(s) {4,6,8,9,10} accuracy is 69%
+	Using feature(s) {2,6,8,9,10} accuracy is 74%
+	Using feature(s) {2,4,8,9,10} accuracy is 79%
+	Using feature(s) {2,4,6,9,10} accuracy is 79%
+	Using feature(s) {2,4,6,8,10} accuracy is 79%
+	Using feature(s) {2,4,6,8,9} accuracy is 79%
+
+Feature set {2,4,8,9,10} was best, accuracy is 79%
+Warning: Accuracy has decreased from previously recorded maximum
+
+	Using feature(s) {4,8,9,10} accuracy is 69%
+	Using feature(s) {2,8,9,10} accuracy is 74%
+	Using feature(s) {2,4,9,10} accuracy is 79%
+	Using feature(s) {2,4,8,10} accuracy is 79%
+	Using feature(s) {2,4,8,9} accuracy is 79%
+
+Feature set {2,4,9,10} was best, accuracy is 79%
+Warning: Accuracy has decreased from previously recorded maximum
+
+	Using feature(s) {4,9,10} accuracy is 71%
+	Using feature(s) {2,9,10} accuracy is 74%
+	Using feature(s) {2,4,10} accuracy is 79%
+	Using feature(s) {2,4,9} accuracy is 79%
+
+Feature set {2,4,10} was best, accuracy is 79%
+Warning: Accuracy has decreased from previously recorded maximum
+
+	Using feature(s) {4,10} accuracy is 73%
+	Using feature(s) {2,10} accuracy is 76%
+	Using feature(s) {2,4} accuracy is 79%
+
+Feature set {2,4} was best, accuracy is 79%
+Warning: Accuracy has decreased from previously recorded maximum
+
+	Using feature(s) {4} accuracy is 72%
+	Using feature(s) {2} accuracy is 76%
+
+Feature set {2} was best, accuracy is 76%
+Warning: Accuracy has decreased from previously recorded maximum
+
+	Using no features, accuracy is 85%
+
+Finished search. The best feature subset is {} which has an accuracy of 85%

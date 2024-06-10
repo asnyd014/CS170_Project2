@@ -1,0 +1,109 @@
+Welcome to Group 42's Feature Selection Algorithm
+
+Type in the name of the file to test: small-test-dataset-1.txt 
+Type the number of the algorithm you want to run: 1
+1. Forward Selection
+2. Backward Elimination
+
+This dataset has 10 features, with 100 instances.
+
+Normalizing data...
+
+Using no features, the current accuracy is 75%
+
+Beginning Forward Selection search
+
+	Using feature(s) {1} accuracy is 57%
+	Using feature(s) {2} accuracy is 54%
+	Using feature(s) {3} accuracy is 68%
+	Using feature(s) {4} accuracy is 65%
+	Using feature(s) {5} accuracy is 75%
+	Using feature(s) {6} accuracy is 61%
+	Using feature(s) {7} accuracy is 62%
+	Using feature(s) {8} accuracy is 60%
+	Using feature(s) {9} accuracy is 66%
+	Using feature(s) {10} accuracy is 64%
+
+Feature set {5} was best, accuracy is 75%
+Warning: Accuracy has decreased from previously recorded maximum
+
+	Using feature(s) {5,1} accuracy is 76%
+	Using feature(s) {5,2} accuracy is 79%
+	Using feature(s) {5,3} accuracy is 91%
+	Using feature(s) {5,4} accuracy is 75%
+	Using feature(s) {5,6} accuracy is 78%
+	Using feature(s) {5,7} accuracy is 81%
+	Using feature(s) {5,8} accuracy is 77%
+	Using feature(s) {5,9} accuracy is 71%
+	Using feature(s) {5,10} accuracy is 82%
+
+Feature set {5,3} was best, accuracy is 91%
+
+	Using feature(s) {5,3,1} accuracy is 81%
+	Using feature(s) {5,3,2} accuracy is 83%
+	Using feature(s) {5,3,4} accuracy is 82%
+	Using feature(s) {5,3,6} accuracy is 82%
+	Using feature(s) {5,3,7} accuracy is 92%
+	Using feature(s) {5,3,8} accuracy is 79%
+	Using feature(s) {5,3,9} accuracy is 85%
+	Using feature(s) {5,3,10} accuracy is 83%
+
+Feature set {5,3,7} was best, accuracy is 92%
+
+	Using feature(s) {5,3,7,1} accuracy is 88%
+	Using feature(s) {5,3,7,2} accuracy is 80%
+	Using feature(s) {5,3,7,4} accuracy is 83%
+	Using feature(s) {5,3,7,6} accuracy is 86%
+	Using feature(s) {5,3,7,8} accuracy is 81%
+	Using feature(s) {5,3,7,9} accuracy is 81%
+	Using feature(s) {5,3,7,10} accuracy is 84%
+
+Feature set {5,3,7,1} was best, accuracy is 88%
+Warning: Accuracy has decreased from previously recorded maximum
+
+	Using feature(s) {5,3,7,1,2} accuracy is 78%
+	Using feature(s) {5,3,7,1,4} accuracy is 76%
+	Using feature(s) {5,3,7,1,6} accuracy is 85%
+	Using feature(s) {5,3,7,1,8} accuracy is 75%
+	Using feature(s) {5,3,7,1,9} accuracy is 75%
+	Using feature(s) {5,3,7,1,10} accuracy is 73%
+
+Feature set {5,3,7,1,6} was best, accuracy is 85%
+Warning: Accuracy has decreased from previously recorded maximum
+
+	Using feature(s) {5,3,7,1,6,2} accuracy is 73%
+	Using feature(s) {5,3,7,1,6,4} accuracy is 72%
+	Using feature(s) {5,3,7,1,6,8} accuracy is 78%
+	Using feature(s) {5,3,7,1,6,9} accuracy is 68%
+	Using feature(s) {5,3,7,1,6,10} accuracy is 72%
+
+Feature set {5,3,7,1,6,8} was best, accuracy is 78%
+Warning: Accuracy has decreased from previously recorded maximum
+
+	Using feature(s) {5,3,7,1,6,8,2} accuracy is 68%
+	Using feature(s) {5,3,7,1,6,8,4} accuracy is 73%
+	Using feature(s) {5,3,7,1,6,8,9} accuracy is 68%
+	Using feature(s) {5,3,7,1,6,8,10} accuracy is 73%
+
+Feature set {5,3,7,1,6,8,4} was best, accuracy is 73%
+Warning: Accuracy has decreased from previously recorded maximum
+
+	Using feature(s) {5,3,7,1,6,8,4,2} accuracy is 67%
+	Using feature(s) {5,3,7,1,6,8,4,9} accuracy is 65%
+	Using feature(s) {5,3,7,1,6,8,4,10} accuracy is 73%
+
+Feature set {5,3,7,1,6,8,4,10} was best, accuracy is 73%
+Warning: Accuracy has decreased from previously recorded maximum
+
+	Using feature(s) {5,3,7,1,6,8,4,10,2} accuracy is 62%
+	Using feature(s) {5,3,7,1,6,8,4,10,9} accuracy is 63%
+
+Feature set {5,3,7,1,6,8,4,10,9} was best, accuracy is 63%
+Warning: Accuracy has decreased from previously recorded maximum
+
+	Using feature(s) {5,3,7,1,6,8,4,10,9,2} accuracy is 68%
+
+Warning: Accuracy has decreased from previously recorded maximum
+
+
+Finished search. The best feature subset is {5,3,7} which has an accuracy of 92%
